@@ -132,7 +132,9 @@ WebpackAssetsManifest.prototype.fixKey = function(key)
  */
 WebpackAssetsManifest.prototype.set = function(key, value)
 {
-  this.assets[ this.fixKey(key) ] = this.options.publicPath( value, this );
+  if (!value.match(/hot-update.js$/)) {
+    this.assets[ this.fixKey(key) ] = this.options.publicPath( value, this );
+  }
 
   return this;
 };
